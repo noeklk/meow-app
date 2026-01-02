@@ -1,0 +1,18 @@
+:host(app-root) {
+    mat-toolbar {
+        padding: 0 100px;
+        display: flex;
+        align-items: center;
+
+        h1 {
+            font-weight: 600;
+            font-size: 24px;
+        }
+
+        .actions {
+            margin-left: auto;
+            display: flex;
+            gap: 20px;
+        }
+    }
+}
