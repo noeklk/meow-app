@@ -36,9 +36,11 @@
           "configurations": {
             "production": {
               "outputHashing": "all",
-              "outputPath": "./public",
-              "optimization": true,
-              "outputMode": "static"
+              "outputPath": {
+                "base": "./public",
+                "browser": ""
+              },
+              "optimization": true
             },
             "development": {
               "optimization": false,
