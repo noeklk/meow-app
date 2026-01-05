@@ -31,5 +31,5 @@ jobs:
       - name: Copy build files to remote PC
         run: |
           scp -P ${{ secrets.SSH_PORT }} -r \
-          ./dist/* \
+          ./public/* \
           root@${{ secrets.SSH_HOST }}:/root/meow-back/app/public
