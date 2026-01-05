@@ -23,13 +23,19 @@ jobs:
           ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       # 📤 DELETE FILES
-      - name: Delete files from remote PC
-        run: |
-          scp -P ${{ secrets.SSH_PORT }} root@${{ secrets.SSH_HOST }} rm -r /root/meow-back/app/public/.
+      # - name: Delete files from remote PC
+      #   run: |
+      #     scp -P ${{ secrets.SSH_PORT }} root@${{ secrets.SSH_HOST }} rm -r /root/meow-back/app/public/.
 
       # 📤 COPY FILES TO REMOTE PC
-      - name: Copy build files to remote PC
+      # - name: Copy build files to remote PC
+      #   run: |
+      #     scp -P ${{ secrets.SSH_PORT }} -r \
+      #     ./dist/* \
+      #     root@${{ secrets.SSH_HOST }}:/root/meow-back/app/public
+
+      - name: Deploy using rsync
         run: |
-          scp -P ${{ secrets.SSH_PORT }} -r \
-          ./dist/* \
+          rsync -avz --delete \
+          ./dist/ \
           root@${{ secrets.SSH_HOST }}:/root/meow-back/app/public
