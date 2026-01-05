@@ -6,5 +6,23 @@
     </div>
 </mat-toolbar>
 
-<h1>Hello world!</h1>
-<button matButton="elevated">Basic</button>
+<div class="content">
+    <form class="form-container" [formGroup]="form" (ngSubmit)="sendMail()">
+        <mat-form-field appearance="outline">
+            <label for="email">Email</label>
+            <input matInput type="email" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <label for="email">Subject</label>
+            <input matInput type="text" formControlName="email" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+            <label for="text">Message</label>
+            <textarea matInput formControlName="text"></textarea>
+        </mat-form-field>
+
+        <button matButton="filled" type="submit">Submit</button>
+    </form>
+</div>
