@@ -43,3 +43,4 @@ __screenshots__/
 Thumbs.db
 firebase-debug.log
 /public
+package-lock.json
