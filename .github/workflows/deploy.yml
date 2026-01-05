@@ -25,7 +25,7 @@ jobs:
       # 📤 DELETE FILES
       - name: Delete files from remote PC
         run: |
-          scp -P ${{ secrets.SSH_PORT }} root@${{ secrets.SSH_HOST }} rm -r /root/meow-back/app/public/.
+          ssh -p ${{ secrets.SSH_PORT }} root@${{ secrets.SSH_HOST }} "rm -rf /root/meow-back/app/public/*"
 
       # 📤 COPY FILES TO REMOTE PC
       - name: Copy build files to remote PC
