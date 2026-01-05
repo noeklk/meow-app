@@ -36,6 +36,6 @@ jobs:
 
       - name: Deploy using rsync
         run: |
-          rsync -avz --delete \
+          rsync -avz --delete -e "ssh -p ${{ secrets.SSH_PORT }}"  \
           ./dist/ \
           root@${{ secrets.SSH_HOST }}:/root/meow-back/app/public
