@@ -3,33 +3,33 @@
 
 name: Deploy to Firebase Hosting on merge
 on:
-  push:
-    branches:
-      - main
+    push:
+        branches:
+            - main
 jobs:
-  build_and_deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+    build_and_deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
 
-      - run: npm run build:prod
+            - run: npm run build:prod
 
-      # 🔐 Setup SSH key
-      - name: Setup SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+            # 🔐 Setup SSH key
+            - name: Setup SSH
+              run: |
+                  mkdir -p ~/.ssh
+                  echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+                  chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      # 📤 DELETE FILES
-      - name: Delete files from remote PC
-        run: |
-          ssh -p ${{ secrets.SSH_PORT }} root@${{ secrets.SSH_HOST }} "rm -rf /root/meow-back/app/public/*"
+            # 📤 DELETE FILES
+            - name: Delete files from remote PC
+              run: |
+                  ssh -p ${{ secrets.SSH_PORT }} root@${{ secrets.SSH_HOST }} "rm -rf /root/meow-back/app/public/*"
 
-      # 📤 COPY FILES TO REMOTE PC
-      - name: Copy build files to remote PC
-        run: |
-          scp -P ${{ secrets.SSH_PORT }} -r \
-          ./public/* \
-          root@${{ secrets.SSH_HOST }}:/root/meow-back/app/public
+            # 📤 COPY FILES TO REMOTE PC
+            - name: Copy build files to remote PC
+              run: |
+                  scp -P ${{ secrets.SSH_PORT }} -r \
+                  ./public/* \
+                  root@${{ secrets.SSH_HOST }}:/root/meow-back/app/public

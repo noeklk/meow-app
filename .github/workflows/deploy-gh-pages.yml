@@ -1,0 +1,25 @@
+name: Deploy Angular to GitHub Pages
+
+on:
+    push:
+        branches:
+            - main # or master
+
+permissions:
+    contents: write
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - run: npm i && npm run build -- --configuration production --base-href /${{ github.event.repository.name }}/
+
+            - name: Deploy to gh-pages branch
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_branch: gh-pages
+                  publish_dir: public
