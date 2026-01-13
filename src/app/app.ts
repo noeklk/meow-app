@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, RouterLink } from '@angular/router';
 import { MatButton } from '@angular/material/button';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatIcon } from '@angular/material/icon';
@@ -23,6 +23,7 @@ import { ToastrModule, ToastrService } from 'ngx-toastr';
         MatFormField,
         ReactiveFormsModule,
         MatFormField,
+        RouterLink,
     ],
     templateUrl: './app.html',
     styleUrls: ['./app.scss'],

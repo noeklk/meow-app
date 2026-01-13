@@ -1,10 +1,15 @@
 <mat-toolbar class="elevated">
-    <h1>Meow meow app</h1>
+    <h1>Quiet Den Training</h1>
     <div class="actions">
-        <mat-icon>favorite</mat-icon>
-        <mat-icon>share</mat-icon>
+        <button matButton [routerLink]="'/pro'">Home</button>
+        <button matButton>About</button>
+        <button matButton>Services</button>
+        <button matButton>Store</button>
+        <button matButton>Contact</button>
     </div>
 </mat-toolbar>
+
+<router-outlet />
 
 <div class="content">
     <form class="form-container" [formGroup]="form" (ngSubmit)="sendMail()">
